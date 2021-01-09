@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
-//import text file controller;
 const textController = require('../controllers/file.controller');
 
 //import validations

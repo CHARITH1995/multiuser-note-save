@@ -5,7 +5,6 @@ const fileArchieve = require('../helpers/fileArchieve/fileArchieve');
 const fileUnarchive = require('../helpers/fileUnarchieve/fileUnarchieve');
 
 const fileScheme = require('../models/textFile.model');
-const TextFileSchema = require('../models/textFile.model');
 
 
 module.exports.textFileAdd = (req, res, _next) => {
@@ -35,10 +34,6 @@ module.exports.updateAFile = (req, res, _next) => {
     const fileContent = req.body.textBody;
     const userId = req.body.userId;
     const id = req.params.id;
-
-    const body = {
-        textBody: fileContent,
-    }
 
     fileScheme.findById(id, (err, file) => {
         if (err) {
@@ -82,6 +77,7 @@ module.exports.updateAFile = (req, res, _next) => {
 module.exports.deleteAFile = (req, res, _next) => {
     const id = req.params.id;
     const userId = req.body.userId;
+
     fileScheme.findById(id, (err, file) => {
         if (err) {
             res.status(500).send(err);
@@ -120,12 +116,10 @@ module.exports.deleteAFile = (req, res, _next) => {
 
 //archieve a file using file id
 module.exports.archieveAFile = (req, res, _next) => {
+
     const id = req.params.id;
     const userId = req.body.userId;
 
-    const body = {
-        is_archived: true
-    }
     fileScheme.findById(id, (err, file) => {
         if (err) {
             res.status(500).send("File cannot Find");
@@ -140,7 +134,7 @@ module.exports.archieveAFile = (req, res, _next) => {
                             "id" : file.id
                         })
                     }).catch(err => {
-                        res.status(500).send("File cannot archieve");
+                        
                     })
                 } else {
                     res.status(500).send("Internal error");
@@ -158,9 +152,6 @@ module.exports.unArchieveAFile = (req, res, _next) => {
     const id = req.params.id;
     const userId = req.body.userId;
 
-    const body = {
-        is_archived: false
-    }
 
     fileScheme.findById(id, (err, file) => {
         if (err) {
@@ -176,7 +167,7 @@ module.exports.unArchieveAFile = (req, res, _next) => {
                             "id" : file.id
                         })
                     }).catch(err => {
-                        res.status(500).send("File cannot Unarchived");
+                        
                     })
                 } else {
                     res.status(500).send("Internal error");
@@ -207,6 +198,7 @@ module.exports.getArchivedList = (req, res, _next) => {
 
 //get the unarchived list
 module.exports.getUnArchivedList = (req, res, _next) => {
+    
     const userId = req.params.userId;
 
     fileScheme.find({ userId: userId, is_archived: false }, (err, files) => {

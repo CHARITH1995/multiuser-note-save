@@ -12,7 +12,7 @@ describe('Task Api', () => {
     // Test get archive files
     describe(`GET ${config.TEST_URL}archivedlist/:userid`, () => {
         it("It should get all the archived file of a user", (done) => {
-            let userid = 1;
+            const userid = 1;
             chai.request(server)
                 .get(`${config.TEST_URL}archivedlist/${userid}`)
                 .end((err, response) => {
@@ -28,7 +28,7 @@ describe('Task Api', () => {
 
     describe(`GET ${config.TEST_URL}archivedlist/:userid`, () => {
         it("It should get all the unarchived file of a user", (done) => {
-            let userid = 5
+            const userid = 1;
             chai.request(server)
                 .get(`${config.TEST_URL}unarchivedlist/${userid}`)
                 .end((err, response) => {
@@ -44,7 +44,7 @@ describe('Task Api', () => {
     // add a file
     describe(`POST ${config.TEST_URL}addText`, () => {
         it("It should add file to the db", (done) => {
-            var body = {
+            const body = {
                 "userId": 20,
                 "textBody": "testing body"
             }
@@ -60,7 +60,7 @@ describe('Task Api', () => {
 
             //add file with missing parameters
             it("It shouldnt add file to the db", (done) => {
-                var body = {
+                const body = {
                     "userId": 20,
                 }
                 chai.request(server)
@@ -77,10 +77,10 @@ describe('Task Api', () => {
           // archieve a file
           describe(`PUT ${config.TEST_URL}setArchieve/:id`, () => {
             it("It should add file to the db", (done) => {
-                var body = {
+                const body = {
                     "userId": 12,
                 }
-                let id = "5ff92929a900ac349845d7f4"
+                const id = "5ff92929a900ac349845d7f4"
                 chai.request(server)
                     .put(`${config.TEST_URL}setArchieve/${id}`)
                     .send(body)
@@ -91,6 +91,4 @@ describe('Task Api', () => {
                 done();
             });
     });
-
-
 })

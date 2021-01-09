@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let TextFile = new Schema({
+const TextFile = new Schema({
     userId: {
         type:Number
     },
