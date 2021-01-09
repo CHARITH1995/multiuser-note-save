@@ -24,7 +24,7 @@ module.exports.textFileAdd = (req, res, _next) => {
             "id" : savedFile.id
         })
     }).catch(err => {
-        res.status(500).send(err)
+        throw err
     })
 }
 
@@ -52,7 +52,7 @@ module.exports.updateAFile = (req, res, _next) => {
                         })
                     })
                     .catch(err => {
-                        res.status(500).send(err)
+                        throw err
 
                     });
             }
@@ -93,7 +93,7 @@ module.exports.deleteAFile = (req, res, _next) => {
                         "id" : deletedFile.id
                     })
                 }).catch(err =>{
-                    res.status(500).send(err);
+                    throw err
                 })
             }
 
@@ -134,7 +134,7 @@ module.exports.archieveAFile = (req, res, _next) => {
                             "id" : file.id
                         })
                     }).catch(err => {
-                        
+                        throw err
                     })
                 } else {
                     res.status(500).send("Internal error");
@@ -167,7 +167,7 @@ module.exports.unArchieveAFile = (req, res, _next) => {
                             "id" : file.id
                         })
                     }).catch(err => {
-                        
+                        throw err
                     })
                 } else {
                     res.status(500).send("Internal error");
@@ -198,7 +198,7 @@ module.exports.getArchivedList = (req, res, _next) => {
 
 //get the unarchived list
 module.exports.getUnArchivedList = (req, res, _next) => {
-    
+
     const userId = req.params.userId;
 
     fileScheme.find({ userId: userId, is_archived: false }, (err, files) => {

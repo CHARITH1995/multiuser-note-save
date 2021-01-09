@@ -3,6 +3,7 @@
 ## what you need
 * node 
 * npm
+* .env file
 
 ## how to run
 
@@ -10,6 +11,7 @@
 * run the project - nodemon / node index.js
 * then you will see  - "good to go 8000" and "Database Connected"
 * run the test cases - npm test
+* .env file is share with email.
 
 ----- note --------
 
@@ -27,6 +29,10 @@
 
 
 # Apis
+
+## postman collection
+
+https://www.getpostman.com/collections/2e7d70b3da41fbf8078c
 
 ## Add a note file to the system.
 
