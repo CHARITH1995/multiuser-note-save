@@ -11,14 +11,14 @@
 * run the project - nodemon / node index.js
 * then you will see  - "good to go 8000" and "Database Connected"
 * run the test cases - npm test
-* .env file is share with email.
+* .env file is share with email, save it to root directory of the project.
 
 ----- note --------
 
-* api will served at - localhost:8000/api/v1/textFile/
+* API will served at - localhost:8000/api/v1/textFile/
 
 * you can change the port by changing the PORT constant at index.js
-* if you change the port , you should the change the port in api - localhost:[ PORT ] /api/v1/textFile/
+* if you change the port , you should the change the port in API - localhost:[ PORT ] /api/v1/textFile/
 * you wont need to setup database settings , its host in mlab 
 
 # Assumptions
