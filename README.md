@@ -9,6 +9,7 @@
 * install npm packages - npm i / npm install
 * run the project - nodemon / node index.js
 * then you will see  - "good to go 8000" and "Database Connected"
+* run the test cases - npm test
 
 ----- note --------
 

@@ -1,6 +1,7 @@
 const config = {
 
-    filePath: '/files'
+    filePath: '/files',
+    TEST_URL : '/api/v1/textFile/'
 
 }
 
