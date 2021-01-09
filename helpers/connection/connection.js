@@ -1,6 +1,5 @@
 require('dotenv').config()
 var mongoose = require('mongoose');
-
 const url = "mongodb+srv://dbUser:dbUser@cluster0.w2z4e.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
 const con = async ()=>{

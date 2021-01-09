@@ -15,12 +15,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors({credentials: true}));
 
-//textFile routes
-var textFileRoute = require('./routes/textFile.routes');
 
 //db connection
 const con = require('./helpers/connection/connection');
 con();
+
+//textFile routes
+var textFileRoute = require('./routes/textFile.routes');
+
 
 //nodejs running port assignment
 const PORT = process.env.PORT || 8000
