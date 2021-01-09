@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const dbUri =  require('../../config');
 
@@ -5,7 +6,7 @@ const dbUri =  require('../../config');
 const con = async ()=>{
 
    await mongoose
-    .connect( dbUri.DATA_BASE_URI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+    .connect(process.env.Database, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
     .then(() => console.log( 'Database Connected' ))
     .catch(err => console.log( err ));
 
