@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 //import text file controller;
-var textController = require('../controllers/file.controller');
+const textController = require('../controllers/file.controller');
 
 //import validations
-var validations = require('../helpers/validations/validation');
+const validations = require('../helpers/validations/validation');
 
 //save text files on db
 router.post('/addText',validations.fileValidations,textController.textFileAdd);

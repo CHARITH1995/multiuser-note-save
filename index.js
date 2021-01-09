@@ -1,13 +1,13 @@
-var express = require('express');
-var app = express();
-var createError = require('http-errors');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var http = require('http');
+const express = require('express');
+const app = express();
+const createError = require('http-errors');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const http = require('http');
 const server = http.createServer(app);
-var bodyParser = require('body-parser');
-var cors = require('cors');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 app.use(express.json({extended:false}))

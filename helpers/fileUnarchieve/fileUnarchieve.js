@@ -1,5 +1,5 @@
-var fs = require('fs');
-var filePath = require('../../filePath');
+const fs = require('fs');
+const filePath = require('../../filePath');
 
 
 //zip file delete

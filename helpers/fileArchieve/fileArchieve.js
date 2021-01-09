@@ -1,9 +1,8 @@
-var fs = require('fs');
-var archiver = require('archiver');
-var filePath = require('../../filePath');
+const fs = require('fs');
+const archiver = require('archiver');
+const filePath = require('../../filePath');
 
 
-//create a zip file using the archiver npm package
 const fileArchieve = (note, next) => {
     try {
         const output = fs.createWriteStream(filePath(note));

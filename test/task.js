@@ -1,18 +1,15 @@
-var chai = require("chai");
-var server = require('../index');
-var chaihttp = require("chai-http");
+const chai = require("chai");
+const server = require('../index');
+const chaihttp = require("chai-http");
 const { response } = require("../index");
-var config = require('../config');
+const config = require('../config');
 
-//Assertion style
 chai.should();
-
 chai.use(chaihttp);
 
 describe('Task Api', () => {
 
     // Test get archive files
-
     describe(`GET ${config.TEST_URL}archivedlist/:userid`, () => {
         it("It should get all the archived file of a user", (done) => {
             let userid = 1;
@@ -44,7 +41,7 @@ describe('Task Api', () => {
         })
     })
 
-    // // add a file
+    // add a file
     describe(`POST ${config.TEST_URL}addText`, () => {
         it("It should add file to the db", (done) => {
             var body = {

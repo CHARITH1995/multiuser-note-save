@@ -1,6 +1,6 @@
-var path = require('path');
-var config = require('./config');
-var basePath = path.join(__dirname, config.filePath);
+const path = require('path');
+const config = require('./config');
+const basePath = path.join(__dirname, config.filePath);
 
 const filePath = (note) => basePath + `/${note.id}.zip`;
 

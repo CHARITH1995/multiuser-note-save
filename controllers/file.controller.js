@@ -1,25 +1,19 @@
 const Joi = require('joi');
 require('dotenv').config();
 
-//import the file archieve
-var fileArchieve = require('../helpers/fileArchieve/fileArchieve');
+const fileArchieve = require('../helpers/fileArchieve/fileArchieve');
+const fileUnarchive = require('../helpers/fileUnarchieve/fileUnarchieve');
 
-//import the file unarchive
-var fileUnarchive = require('../helpers/fileUnarchieve/fileUnarchieve');
+const fileScheme = require('../models/textFile.model');
+const TextFileSchema = require('../models/textFile.model');
 
-//import the file schema
-var fileScheme = require('../models/textFile.model');
 
-//import textFile schema;
-var TextFileSchema = require('../models/textFile.model');
+module.exports.textFileAdd = (req, res, _next) => {
 
-//add file to a database
-module.exports.textFileAdd = (req, res, next) => {
+    const fileContent = req.body.textBody;
+    const userId = req.body.userId;
 
-    let fileContent = req.body.textBody;
-    let userId = req.body.userId;
-
-    let file = new fileScheme({
+    const file = new fileScheme({
         userId: userId,
         textBody: fileContent,
         is_archived:false
@@ -36,11 +30,11 @@ module.exports.textFileAdd = (req, res, next) => {
 }
 
 //update previously add note
-module.exports.updateAFile = (req, res, next) => {
+module.exports.updateAFile = (req, res, _next) => {
 
-    let fileContent = req.body.textBody;
-    let userId = req.body.userId;
-    let id = req.params.id;
+    const fileContent = req.body.textBody;
+    const userId = req.body.userId;
+    const id = req.params.id;
 
     const body = {
         textBody: fileContent,
@@ -54,12 +48,12 @@ module.exports.updateAFile = (req, res, next) => {
             res.status(200).send("File Not Found")
         } else {
             file.textBody = fileContent;
-            let fileSave = (message) => {
+            const fileSave = (message) => {
                 file.save()
                     .then(note => {
                         res.status(200).json({
                             "message":message,
-                            "id" : file.id
+                            "id" : note.id
                         })
                     })
                     .catch(err => {
@@ -85,9 +79,9 @@ module.exports.updateAFile = (req, res, next) => {
 }
 
 //delete a file by Id
-module.exports.deleteAFile = (req, res, next) => {
-    let id = req.params.id;
-    let userId = req.body.userId
+module.exports.deleteAFile = (req, res, _next) => {
+    const id = req.params.id;
+    const userId = req.body.userId;
     fileScheme.findById(id, (err, file) => {
         if (err) {
             res.status(500).send(err);
@@ -96,7 +90,7 @@ module.exports.deleteAFile = (req, res, next) => {
             res.status(200).send("user not matched")
         } else {
 
-            let deleteFile = (message) => {
+            const deleteFile = (message) => {
                 file.deleteOne().then(deletedFile => {
                     res.status(200).json({
                         "message":message,
@@ -125,9 +119,9 @@ module.exports.deleteAFile = (req, res, next) => {
 
 
 //archieve a file using file id
-module.exports.archieveAFile = (req, res, next) => {
-    let id = req.params.id;
-    let userId = req.body.userId;
+module.exports.archieveAFile = (req, res, _next) => {
+    const id = req.params.id;
+    const userId = req.body.userId;
 
     const body = {
         is_archived: true
@@ -140,7 +134,7 @@ module.exports.archieveAFile = (req, res, next) => {
             file.is_archived = true
             fileArchieve(file, (err) => {
                 if (!err) {
-                    file.save().then(textFile => {
+                    file.save().then(_textFile => {
                         res.status(200).json({
                             "message":"File archieved",
                             "id" : file.id
@@ -160,9 +154,9 @@ module.exports.archieveAFile = (req, res, next) => {
 }
 
 //unarchieve a file using file id
-module.exports.unArchieveAFile = (req, res, next) => {
-    let id = req.params.id;
-    let userId = req.body.userId;
+module.exports.unArchieveAFile = (req, res, _next) => {
+    const id = req.params.id;
+    const userId = req.body.userId;
 
     const body = {
         is_archived: false
@@ -176,7 +170,7 @@ module.exports.unArchieveAFile = (req, res, next) => {
             file.is_archived = false
             fileUnarchive(file, (err) => {
                 if (!err) {
-                    file.save().then(textFile => {
+                    file.save().then(_textFile => {
                         res.status(200).json({
                             "message":"File Unarchived",
                             "id" : file.id
@@ -195,8 +189,8 @@ module.exports.unArchieveAFile = (req, res, next) => {
 }
 
 //get the archived list
-module.exports.getArchivedList = (req, res, next) => {
-    let userId = req.params.userId;
+module.exports.getArchivedList = (req, res, _next) => {
+    const userId = req.params.userId;
 
     fileScheme.find({ userId: userId, is_archived: true }, (err, files) => {
         if (err) {
@@ -212,8 +206,8 @@ module.exports.getArchivedList = (req, res, next) => {
 
 
 //get the unarchived list
-module.exports.getUnArchivedList = (req, res, next) => {
-    let userId = req.params.userId;
+module.exports.getUnArchivedList = (req, res, _next) => {
+    const userId = req.params.userId;
 
     fileScheme.find({ userId: userId, is_archived: false }, (err, files) => {
         if (err) {
