@@ -45,7 +45,6 @@ module.exports.updateAFile = (req, res, _next) => {
         file
           .save()
           .then((note) => {
-            console.log(note);
             res.status(200).json({
               message: message,
               id: note.id,
