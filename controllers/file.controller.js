@@ -1,5 +1,4 @@
 const Joi = require("joi");
-require("dotenv").config();
 
 const fileArchieve = require("../helpers/fileArchieve/fileArchieve");
 const fileUnarchive = require("../helpers/fileUnarchieve/fileUnarchieve");
