@@ -37,8 +37,7 @@ module.exports.updateAFile = (req, res, _next) => {
   fileScheme.findById(id, (err, file) => {
     if (err) {
       return res.status(500).send(err);
-    } else if (!file || file.userId != userId) {
-      console.log("here");
+    } else if (!file || file.userId !== userId) {
       return res.status(500).send("File Not Found");
     } else {
       file.textBody = fileContent;
@@ -122,7 +121,7 @@ module.exports.archieveAFile = (req, res, _next) => {
   fileScheme.findById(id, (err, file) => {
     if (err) {
       return res.status(500).send("File cannot Find");
-    } else if (!file || file.userId == userId) {
+    } else if (!file || file.userId !== userId) {
       return res.status(500).send("user not Matched");
     } else {
       file.is_archived = true;
@@ -155,7 +154,7 @@ module.exports.unArchieveAFile = (req, res, _next) => {
   fileScheme.findById(id, (err, file) => {
     if (err) {
       return res.status(500).send("File cannot Find");
-    } else if (!file || file.userId == userId) {
+    } else if (!file || file.userId !== userId) {
       return res.status(500).send("cannot archieve");
     } else {
       file.is_archived = false;
